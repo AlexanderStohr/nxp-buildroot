@@ -1,17 +1,18 @@
-Make the libcrypt test somewhat cross-compilation compliant
+Make the libcrypt test cross-compilation compliant with linaro toolchain
 
-Signed-off-by: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Signed-off-by: Eddy Petrisor <eddy.petrisor@nxp.com>
 
 Index: b/src/Makefile
 ===================================================================
 --- a/src/Makefile
 +++ b/src/Makefile
-@@ -78,7 +78,7 @@
+@@ -78,7 +78,8 @@
  endif
  
  # Additional libs for GNU libc.
 -ifneq ($(wildcard /usr/lib*/libcrypt.a),)
-+ifneq ($(wildcard $(SYSROOT)/usr/lib*/libcrypt.a),)
++HAS_LIBCRYPT=$(shell f=`mktemp` && echo 'int main(void) {}' | $(CC) -o $$f -xc - -lcrypt >/dev/null 2>&1 && echo y && rm -f $$f)
++ifeq ($(HAS_LIBCRYPT),y)
    SULOGINLIBS	+= -lcrypt
  endif
  
