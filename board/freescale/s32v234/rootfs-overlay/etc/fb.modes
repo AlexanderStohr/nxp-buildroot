@@ -1,0 +1,23 @@
+# FB Modes for S32V234
+
+mode "1280x720-60"
+    geometry 1280 720 1280 720 32
+    timings  13468 220 110 20 5 40 5
+    hsync high
+    vsync high
+endmode
+
+mode "720x576-50"
+    geometry 720 576 720 576 32
+    timings 37037 68 12 39 5 64 5
+endmode
+
+mode "720x480-60"
+    geometry 720 480 720 480 32
+    timings 37037 60 16 30 9 62 6
+endmode
+
+mode "640x480-60"
+    geometry 640 480 640 480 32
+    timings 39722 48 16 33 10 96 2
+endmode
